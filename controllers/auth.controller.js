@@ -18,4 +18,17 @@ exports.register = async (req, res) => {
   };
 }
 
-exports.login = async (req, res) => {};
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user || !(await user.comparePassword(password))) {
+      return res.status(401).json({ error: 'Invalid Credentials' });
+    }
+
+    const token = generateToken(user._id);
+    res.json({ userId: user._id, token });
+  } catch(err) {
+    res.status(400).json({ error: err.message });
+  }
+};
