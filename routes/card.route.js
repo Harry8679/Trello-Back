@@ -1,12 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const {
-  getCards,
-  createCard,
-  updateCard,
-  deleteCard
-} = require('../controllers/cardController');
-const auth = require('../middleware/authMiddleware');
+const { getCards, createCard, updateCard, deleteCard } = require('../controllers/card.controller');
+const auth = require('../middlewares/auth.middleware');
 
 router.get('/:columnId', auth, getCards);
 router.post('/:columnId', auth, createCard);
