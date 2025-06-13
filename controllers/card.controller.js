@@ -32,3 +32,12 @@ exports.updateCard = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+
+exports.deleteCard = async (req, res) => {
+  try {
+    await Card.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Card deleted' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
