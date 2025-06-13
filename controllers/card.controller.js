@@ -18,3 +18,17 @@ exports.createCard = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+
+exports.updateCard = async (req, res) => {
+  try {
+    const { title, description, order, columnId } = req.body;
+    const card = await Card.findByIdAndUpdate(
+      req.params.id,
+      { title, description, order, columnId },
+      { new: true }
+    );
+    res.json(card);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
