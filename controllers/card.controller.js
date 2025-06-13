@@ -8,3 +8,13 @@ exports.getCards = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.createCard = async (req, res) => {
+  try {
+    const { title, description, order } = req.body;
+    const card = await Card.create({ title, description, order, columnId: req.params.columnId });
+    res.status(201).json(card);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
