@@ -6,6 +6,10 @@ const app = express();
 // const boardRoutes = require('./routes/boardRoutes');
 // const columnRoutes = require('./routes/columnRoutes');
 // const cardRoutes = require('./routes/cardRoutes');
+const authRoutes = require('./routes/auth.route');
+const boardRoutes = require('./routes/board.route');
+const columnRoutes = require('./routes/column.route');
+const cardRoutes = require('./routes/card.route');
 
 app.use(cors());
 app.use(express.json());
