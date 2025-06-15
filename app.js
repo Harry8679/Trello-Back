@@ -2,10 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-// const authRoutes = require('./routes/authRoutes');
-// const boardRoutes = require('./routes/boardRoutes');
-// const columnRoutes = require('./routes/columnRoutes');
-// const cardRoutes = require('./routes/cardRoutes');
 const authRoutes = require('./routes/auth.route');
 const boardRoutes = require('./routes/board.route');
 const columnRoutes = require('./routes/column.route');
