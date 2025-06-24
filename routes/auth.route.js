@@ -12,6 +12,6 @@ router.put('/update-email', authMiddleware, updateEmail);
 router.put('/update-password', authMiddleware, updatePassword);
 
 router.put('/update-avatar-color', authMiddleware, updateAvatarColor);
-router.put('/update-avatar-url', auth, updateAvatarUrl);
+router.put('/update-avatar-url', authMiddleware, updateAvatarUrl);
 
 module.exports = router;
