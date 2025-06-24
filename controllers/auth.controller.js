@@ -40,3 +40,20 @@ exports.me = async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 };
+
+exports.updateEmail = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.userId,
+      { email },
+      { new: true, runValidators: true, context: 'query' }
+    ).select('-password');
+
+    if (!user) return res.status(404).json({ message: 'Utilisateur non trouvé' });
+
+    res.json(user);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
