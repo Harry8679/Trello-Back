@@ -77,7 +77,7 @@ exports.updatePassword = async (req, res) => {
   }
 };
 
-exports.updatePassword = async (req, res) => {
+/* exports.updatePassword = async (req, res) => {
   const { currentPassword, newPassword } = req.body;
   try {
     const user = await User.findById(req.userId);
@@ -86,11 +86,11 @@ exports.updatePassword = async (req, res) => {
     const isMatch = await user.comparePassword(currentPassword);
     if (!isMatch) return res.status(400).json({ message: 'Mot de passe actuel incorrect' });
 
-    user.password = newPassword; // hashé automatiquement dans le hook "pre save"
+    user.password = newPassword;
     await user.save();
 
     res.json({ message: 'Mot de passe mis à jour avec succès' });
   } catch (err) {
     res.status(500).json({ message: 'Erreur serveur' });
   }
-};
+};*/
