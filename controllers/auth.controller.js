@@ -86,3 +86,13 @@ exports.updateAvatarColor = async (req, res) => {
     res.status(400).json({ message: 'Erreur lors de la mise à jour de la couleur' });
   }
 };
+
+exports.updateAvatarUrl = async (req, res) => {
+  const { avatarUrl } = req.body;
+  try {
+    const user = await User.findByIdAndUpdate(req.userId, { avatarUrl }, { new: true });
+    res.json(user);
+  } catch (err) {
+    res.status(400).json({ message: 'Erreur lors de la mise à jour de l\'avatar' });
+  }
+};
