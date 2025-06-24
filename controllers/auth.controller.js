@@ -76,3 +76,13 @@ exports.updatePassword = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
+
+exports.updateAvatarColor = async (req, res) => {
+  const { avatarColor } = req.body;
+  try {
+    const user = await User.findByIdAndUpdate(req.userId, { avatarColor }, { new: true });
+    res.json(user);
+  } catch (err) {
+    res.status(400).json({ message: 'Erreur lors de la mise à jour de la couleur' });
+  }
+};
