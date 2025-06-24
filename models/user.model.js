@@ -5,7 +5,10 @@ const userSchema = new mongoose.Schema({
   firstName: { type: String, required: true },  // Prénom
   lastName: { type: String, required: true },   // Nom
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  // 🆕 Avatar
+  avatarUrl: { type: String, default: '' }, // lien vers image si uploadée
+  avatarColor: { type: String, default: '#2563eb' } // bleu par défaut (bg-blue-600)
 });
 
 userSchema.pre('save', async function () {
