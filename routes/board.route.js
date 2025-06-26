@@ -1,5 +1,5 @@
 const express = require('express');
-const { createBoard, getBoards, inviteToBoard, getBoardById, getBoardColumns } = require('../controllers/board.controller');
+const { createBoard, getBoards, inviteToBoard, getBoardById, getBoardColumns, addBoardColumns } = require('../controllers/board.controller');
 const authMiddleware = require('../middlewares/auth.middleware');
 const router = express.Router();
 
@@ -9,5 +9,6 @@ router.put('/:id/invite', authMiddleware, inviteToBoard);
 
 router.get('/:id', authMiddleware, getBoardById); // 👈 Pour charger le projet
 router.get('/:id/columns', authMiddleware, getBoardColumns); // 👈 Pour charger ses colonnes
+outer.post('/:id/columns', authMiddleware, addBoardColumns); // 👈 ajoute cette ligne
 
 module.exports = router;
