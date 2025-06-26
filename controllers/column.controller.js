@@ -1,20 +1,18 @@
 const Column = require('../models/column.model');
 
-exports.getColumns = async (req, res) => {
-  try {
-    const columns = await Column.find({ boardId: req.params.boardId });
-    res.json(columns);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+exports.createColumn = async (req, res) => {
+  const { boardId } = req.params;
+  const { title } = req.body;
+  const col = await Column.create({ boardId, title, order: Date.now() });
+  res.status(201).json(col);
 };
 
-exports.createColumn = async (req, res) => {
-  try {
-    const { title } = req.body;
-    const column = await Column.create({ title, boardId: req.params.boardId });
-    res.status(201).json(column);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
+exports.reorderColumn = async (req, res) => {
+  const { boardId, colId } = req.params;
+  const { newOrder } = req.body;  // nouveau order pour cette colonne
+  const col = await Column.findOne({ _id: colId, boardId });
+  if (!col) return res.status(404).json({ message: 'Colonne introuvable' });
+  col.order = newOrder;
+  await col.save();
+  res.json(col);
 };
