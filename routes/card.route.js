@@ -1,11 +1,12 @@
+// routes/cards.js
 const express = require('express');
-const router = express.Router();
-const { getCards, createCard, updateCard, deleteCard } = require('../controllers/card.controller');
+const { createCard, updateCard, reorderCard, deleteCard } = require('../controllers/card.controller');
 const auth = require('../middlewares/auth.middleware');
+const router = express.Router();
 
-router.get('/:columnId', auth, getCards);
-router.post('/:columnId', auth, createCard);
-router.put('/:id', auth, updateCard);
-router.delete('/:id', auth, deleteCard);
+router.post('/columns/:columnId/cards', auth, createCard);
+router.put('/cards/:id', auth, updateCard);
+router.put('/cards/:id/order', auth, reorderCard);
+router.delete('/cards/:id', auth, deleteCard);
 
 module.exports = router;
