@@ -1,5 +1,6 @@
 const Board = require('../models/board.model');
 const User = require('../models/user.model');
+const Column = require('../models/column.model');
 
 exports.createBoard = async (req, res) => {
   const { title } = req.body;
