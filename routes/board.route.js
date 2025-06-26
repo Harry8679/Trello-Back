@@ -9,6 +9,6 @@ router.put('/:id/invite', authMiddleware, inviteToBoard);
 
 router.get('/:id', authMiddleware, getBoardById); // 👈 Pour charger le projet
 router.get('/:id/columns', authMiddleware, getBoardColumns); // 👈 Pour charger ses colonnes
-outer.post('/:id/columns', authMiddleware, addBoardColumns); // 👈 ajoute cette ligne
+router.post('/:id/columns', authMiddleware, addBoardColumns); // 👈 ajoute cette ligne
 
 module.exports = router;
