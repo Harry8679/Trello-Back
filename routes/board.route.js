@@ -1,4 +1,3 @@
-// routes/boards.js
 const express = require('express');
 const { createBoard, getBoards, inviteToBoard } = require('../controllers/board.controller');
 const authMiddleware = require('../middlewares/auth.middleware');
