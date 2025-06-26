@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { getBoards, createBoard } = require('../controllers/board.controller');
-const auth = require('../middlewares/auth.middleware');
+const authMiddleware = require('../middlewares/auth.middleware');
 
-router.get('/', auth, getBoards);
-router.post('/', auth, createBoard);
+router.get('/', authMiddleware, getBoards);
+router.post('/', authMiddleware, createBoard);
 
 module.exports = router;
