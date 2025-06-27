@@ -57,27 +57,18 @@ exports.getBoardById = async (req, res) => {
 //   }
 // };
 
+// GET /api/boards/:id/columns → récupérer les colonnes d’un board
 exports.getBoardColumns = async (req, res) => {
   try {
-    const Column = require('../models/column.model');
-    const { columns } = req.body;
-    const boardId = req.params.id;
-
-    if (!Array.isArray(columns)) {
-      return res.status(400).json({ message: 'Colonnes invalides' });
-    }
-
-    const saved = await Column.insertMany(
-      columns.map(c => ({ title: c.title, boardId }))
-    );
-
-    res.status(201).json(saved);
+    const columns = await Column.find({ boardId: req.params.id }).sort({ _id: 1 });
+    res.json(columns);
   } catch (err) {
-    console.error('Erreur création colonnes :', err);
+    console.error('Erreur de récupération des colonnes :', err);
     res.status(500).json({ message: 'Erreur serveur' });
   }
 };
 
+// POST /api/boards/:id/columns → ajouter des colonnes à un board
 exports.addBoardColumns = async (req, res) => {
   try {
     const { columns } = req.body;
