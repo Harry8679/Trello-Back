@@ -71,7 +71,6 @@ exports.getBoardColumns = async (req, res) => {
 // POST /api/boards/:id/columns → ajouter des colonnes à un board
 exports.addBoardColumns = async (req, res) => {
   try {
-    console.log('📥 BODY reçu dans addBoardColumns:', req.body);
     const { columns } = req.body;
     const boardId = req.params.id;
 
@@ -80,7 +79,7 @@ exports.addBoardColumns = async (req, res) => {
     }
 
     const saved = await Column.insertMany(
-      columns.map(c => ({ title: c.title, boardId }))
+      columns.map(c => ({ title: c.title, board: boardId })) // 👈 ici
     );
 
     res.status(201).json(saved);
