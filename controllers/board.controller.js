@@ -48,15 +48,6 @@ exports.getBoardById = async (req, res) => {
   }
 };
 
-// exports.getBoardColumns = async (req, res) => {
-//   try {
-//     const columns = await Column.find({ boardId: req.params.id }).sort({ _id: 1 });
-//     res.json(columns);
-//   } catch (err) {
-//     res.status(500).json({ message: 'Erreur serveur' });
-//   }
-// };
-
 // GET /api/boards/:id/columns → récupérer les colonnes d’un board
 exports.getBoardColumns = async (req, res) => {
   try {
